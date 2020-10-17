@@ -1,0 +1,32 @@
+.wrapper-picture {
+  width: 5.625rem;
+  height: 5.625rem;
+  flex: 0.5;
+}
+
+.placeholder {
+  width: 5.625rem;
+  height: 5.625rem;
+  border-radius: 0.25rem;
+  background: rgb(204, 204, 204);
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.08) 0,
+    rgba(0, 0, 0, 0.15) 15%,
+    rgba(0, 0, 0, 0.08) 30%
+  );
+  background-size: 1200px 100%;
+  animation-name: load;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes load {
+  0% {
+    background-position: -1200px 0;
+  }
+  100% {
+    background-position: 1200px 0;
+  }
+}
