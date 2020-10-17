@@ -1,0 +1,19 @@
+.SideBar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 15rem;
+}
+
+.title-minor {
+  font-family: "Poppins", sans-serif;
+  color: var(--ligth-font);
+  text-transform: uppercase;
+  margin-bottom: 0;
+  font-size: 0.875rem;
+}
+
+.SideBar .Input {
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  padding-right: 0;
+}

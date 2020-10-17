@@ -1,0 +1,26 @@
+.Description {
+  max-width: 85vw;
+}
+
+.arrow-return {
+  transform: rotate(180deg);
+}
+
+.return-search {
+  display: flex;
+  font-family: "Poppins";
+  align-items: center;
+  text-decoration: none;
+  font-size: 0.875rem;
+}
+
+.how-apply,
+.detail-job {
+  color: var(--blue-font);
+}
+
+.how-apply a,
+.detail-job a,
+.return-search {
+  color: var(--link);
+}

@@ -1,0 +1,17 @@
+.wrapper-checkbox {
+  color: var(--blue-font);
+  display: flex;
+  align-items: center;
+}
+
+.checkbox {
+  border: 1px solid #b9bdcf;
+  box-sizing: border-box;
+  margin-right: 1rem;
+  border-radius: 0.125rem;
+}
+
+.label-checkbox {
+  font-size: 0.875rem;
+  font-family: "Poppins", sans-serif;
+}

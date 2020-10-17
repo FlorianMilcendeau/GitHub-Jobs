@@ -1,0 +1,11 @@
+.Button {
+  background-color: #1e86ff;
+  color: #fff;
+  width: 25vw;
+  height: 2.9375rem;
+  border: none;
+  border-radius: 0.3125rem;
+  cursor: pointer;
+  font-family: "Roboto";
+  font-weight: 500;
+}

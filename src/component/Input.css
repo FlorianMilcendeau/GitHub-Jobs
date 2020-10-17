@@ -1,0 +1,29 @@
+.wrapper-input {
+  position: relative;
+}
+
+.Input {
+  padding-left: 2rem;
+  padding-right: 25vw;
+  width: 82vw;
+  height: 3.4375rem;
+  text-overflow: ellipsis;
+  border: none;
+  outline: none;
+  border-radius: 0.3125rem;
+  transition: all 0.1s linear;
+}
+
+.Input:focus {
+  border: 0.1rem solid #1e86ff;
+}
+
+.Input::placeholder {
+  color: var(--ligth-font);
+}
+.icon {
+  position: absolute;
+  left: 0.3rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
