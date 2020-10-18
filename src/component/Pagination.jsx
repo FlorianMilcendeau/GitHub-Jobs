@@ -33,7 +33,7 @@ const Pagination = ({ length, nextPage, prevPage }) => {
           {page}
         </li>
       ))}
-      <li index={length} className={`pagination ${length === currPage && "current-page"}`}  >{length}</li>
+      {length > 5 && <li index={length} className={`pagination ${length === currPage && "current-page"}`}  >{length}</li>}
       <li className="nextPage" onClick={() => nextPage(totalPages, setTotalPages, setCurrPage)}>
         <img className="arrow" src={nextArrow} alt="next arrow icon" />
       </li>
