@@ -1,0 +1,10 @@
+.info-post {
+  color: var(--ligth-font);
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+}
+
+.info-post > img {
+  margin-right: 0.2rem;
+}
