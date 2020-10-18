@@ -1,11 +1,11 @@
 .CardJob {
   display: flex;
-  width: 80vw;
+  width: 85vw;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
   background-color: #fff;
   border-radius: 0.3125rem;
   padding: 1rem;
-  margin-bottom: 1rem;
+  margin-top: 2rem;
 }
 
 .info-company {
@@ -15,10 +15,8 @@
 }
 
 .company-logo {
-  flex: 0.5;
-  max-height: 5rem;
-  max-width: 7rem;
   border-radius: 0.25rem;
+  width: 100%;
 }
 
 .company-name {
@@ -41,14 +39,6 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-}
-
-.time-post,
-.location {
-  color: var(--ligth-font);
-  font-size: 0.75rem;
-  display: flex;
-  align-items: center;
 }
 
 .location {
