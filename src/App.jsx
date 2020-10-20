@@ -1,9 +1,12 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import "./App.css";
-import SearchJobs from "./root/SearchJobs";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Description from "./root/Description";
-import { allJobs, jobsContext } from "./context/JobsContext";
+import { JobsContextProvider } from "./context/JobsContext";
+import Load from "./component/Load";
+import { SearchContextProvider } from "./context/SearchContext";
+
+const Description = lazy(() => import("./root/Description"));
+const SearchJobs = lazy(() => import("./root/SearchJobs"));
 
 function App() {
   return (
@@ -13,10 +16,14 @@ function App() {
           GitHub <span>Jobs</span>
         </h1>
         <Switch>
-          <jobsContext.Provider value={allJobs}>
-            <Route exact path="/" component={SearchJobs} />
-            <Route path="/:id" component={Description} />
-          </jobsContext.Provider>
+          <SearchContextProvider>
+            <JobsContextProvider>
+              <Suspense fallback={<Load />}>
+                <Route exact path="/" component={SearchJobs} />
+                <Route path="/:id" component={Description} />
+              </Suspense>
+            </JobsContextProvider>
+          </SearchContextProvider>
         </Switch>
         <footer>
           <address>
