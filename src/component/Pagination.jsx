@@ -8,10 +8,12 @@ const Pagination = ({ length, nextPage, prevPage }) => {
   const [totalPages, setTotalPages] = useState([]);
   const [currPage, setCurrPage] = useState(1);
 
+  //Initialize
   useEffect(() => {
     const array = [];
     const maxLength = length > 4 ? 4 : length;
 
+    setCurrPage(1);
     for (let i = 0; i < maxLength; i++) {
       if (i === 3) {
         array.push("...");
@@ -33,7 +35,11 @@ const Pagination = ({ length, nextPage, prevPage }) => {
           {page}
         </li>
       ))}
-      {length > 5 && <li index={length} className={`pagination ${length === currPage && "current-page"}`}  >{length}</li>}
+      {length > 5 && (
+        <li index={length} className={`pagination ${length === currPage && "current-page"}`}>
+          {length}
+        </li>
+      )}
       <li className="nextPage" onClick={() => nextPage(totalPages, setTotalPages, setCurrPage)}>
         <img className="arrow" src={nextArrow} alt="next arrow icon" />
       </li>
