@@ -7,8 +7,10 @@ const SearchJobs = () => {
   return (
     <>
       <Header />
-      <SideBar />
-      <Main />
+      <div className="container-flex">
+        <SideBar />
+        <Main />
+      </div>
     </>
   );
 };
