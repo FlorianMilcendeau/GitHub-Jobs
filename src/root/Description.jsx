@@ -1,36 +1,50 @@
-import React from "react";
-import { useParams } from "react-router-dom";
-import { jobsContext } from "../context/JobsContext";
+import React, { useContext, useEffect } from "react";
+import { Redirect, useParams } from "react-router-dom";
+import { JobsContext } from "../context/JobsContext";
 import arrowReturn from "../assets/icon/arrowReturn.svg";
+import earthIcon from "../assets/icon/earth.svg";
 import timeIcon from "../assets/icon/time.svg";
 import "./Description.css";
 import Tag from "../component/Tag";
-import Time from "../component/Time";
+import InfoPost from "../component/InfoPost";
+import Picture from "../component/Picture";
+import { Link } from "react-router-dom";
 
 const Description = () => {
-  let { id } = useParams();
+  const { jobs } = useContext(JobsContext);
+  const { id } = useParams();
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   return (
     <main className="Description">
-      <a className="return-search" href="/">
+      <Link className="return-search" to="/">
         <img className="arrow-return" src={arrowReturn} alt="arrow return" /> Back to search
-      </a>
+      </Link>
       <h3 className="title-minor">How to apply</h3>
-      <jobsContext.Consumer>
-        {(Jobs) => (
-          <>
-            <p className="how-apply" dangerouslySetInnerHTML={{ __html: `${Jobs[id].apply}` }}></p>
-            
-            <h2>{Jobs[id].title}</h2>
-            <Tag value={Jobs[id].type} />
-            <Time value={Jobs[id].time} icon={timeIcon} />
-            <img lazy="true" className="company-logo" src={Jobs[id].logo} alt="logo" />
-            <section
-              className="detail-job"
-              dangerouslySetInnerHTML={{ __html: `${Jobs[id].description}` }}
-            />
-          </>
-        )}
-      </jobsContext.Consumer>
+      {jobs[id] ? (
+        <>
+          <p className="how-apply" dangerouslySetInnerHTML={{ __html: `${jobs[id].apply}` }}></p>
+          <h2>{jobs[id].title}</h2>
+          <Tag value={jobs[id].type} />
+          <InfoPost value={jobs[id].time} icon={timeIcon} />
+          <div className="banner-company">
+            <Picture className="company-logo" src={jobs[id].logo} alt="logo" />
+            <div>
+              <h2>{jobs[id].company}</h2>
+              <InfoPost value={jobs[id].location} icon={earthIcon} />
+            </div>
+          </div>
+          <section
+            className="detail-job"
+            dangerouslySetInnerHTML={{ __html: `${jobs[id].description}` }}
+          />
+        </>
+      ) : (
+        <Redirect to="/" />
+      )}
     </main>
   );
 };
