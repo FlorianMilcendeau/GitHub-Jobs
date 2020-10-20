@@ -1,5 +1,5 @@
 .Description {
-  max-width: 85vw;
+  max-width: 90vw;
 }
 
 .arrow-return {
@@ -23,4 +23,40 @@
 .detail-job a,
 .return-search {
   color: var(--link);
+}
+
+.return-search {
+  margin-bottom: 1rem;
+}
+
+.banner-company {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.banner-company > .wrapper-picture {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: none;
+  margin-right: 1rem;
+}
+
+.how-apply ~ h2 {
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.Description > .Tag {
+  margin-bottom: 0.5rem;
+}
+
+.Description .info-post {
+  margin-bottom: 1.5rem;
+  width: max-content;
+}
+
+.detail-job {
+  margin-top: 5rem;
 }

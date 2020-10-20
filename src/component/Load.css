@@ -27,15 +27,18 @@
 
 @keyframes waiting {
   from {
+    opacity: 1;
     background-color: var(--link);
     transform: scale(1);
   }
   50% {
     background-color: var(--blue-font);
     transform: scale(0);
+    opacity: 0.4;
   }
   to {
     background-color: var(--link);
     transform: scale(1);
+    opacity: 1;
   }
 }
