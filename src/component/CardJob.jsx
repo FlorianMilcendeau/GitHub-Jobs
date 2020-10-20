@@ -13,7 +13,7 @@ const CardJob = ({ index, logo, company, title, location, time, type }) => {
       <Picture className="company-logo" src={logo} alt="logo" />
       <section className="info-company">
         <h4 className="company-name">{company}</h4>
-        <p>{title}</p>
+        <p className="name-job">{title}</p>
         <Tag value={type} />
         <footer className="footer-card">
           <ul>
