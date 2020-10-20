@@ -13,5 +13,18 @@
 
 .Button {
   position: absolute;
-  right: 5vw;
+  right: 5%;
+}
+
+@media screen and (min-width: 768px) {
+  .Button {
+    right: 17%;
+  }
+}
+
+@media screen and (min-width: 1750px) {
+  .Button {
+    left: 50%;
+    transform: translateX(17rem);
+  }
 }

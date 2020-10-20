@@ -25,3 +25,15 @@
 .SideBar .wrapper-input {
   margin-bottom: 1rem;
 }
+
+@media screen and (min-width: 768px) {
+  .SideBar {
+    grid-area: sidebar;
+    justify-self: flex-end;
+    align-self: flex-start;
+  }
+
+  .SideBar .Input {
+    width: 20vw;
+  }
+}

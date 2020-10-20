@@ -1,6 +1,6 @@
 .CardJob {
   display: flex;
-  width: 85vw;
+  width: 80vw;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
   background-color: #fff;
   border-radius: 0.3125rem;
@@ -43,4 +43,31 @@
 
 .location {
   margin-right: 0.3rem;
+}
+
+@media screen and (min-width: 768px) {
+  .CardJob {
+    width: 60vw;
+    max-width: 50rem;
+  }
+
+  .wrapper-picture {
+    height: auto;
+    width: auto;
+  }
+
+  .company-logo {
+    width: auto;
+    height: auto;
+    max-height: 9rem;
+    max-width: 15rem;
+  }
+
+  .name-job {
+    font-size: 1.125rem;
+  }
+
+  .footer-card {
+    justify-content: flex-end;
+  }
 }

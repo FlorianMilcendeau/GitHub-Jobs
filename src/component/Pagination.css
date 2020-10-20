@@ -4,7 +4,7 @@
   list-style: none;
   justify-content: space-around;
   cursor: pointer;
-  width: min-content;
+  max-width: 90vw;
 }
 
 .Pagination > li {
@@ -12,6 +12,7 @@
   border: 1px solid #b7bcce;
   border-radius: 0.25rem;
   padding: 0.3rem 0.7rem;
+  width: 10vw;
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -39,8 +40,16 @@ li.current-page {
 }
 
 @media screen and (min-width: 768px) {
+  .Pagination {
+    align-self: flex-end;
+  }
+
   .Pagination > li:hover {
     color: #1e86ff;
     border: 1px solid #1e86ff;
+  }
+
+  .Pagination li {
+    max-width: 3.5rem;
   }
 }
