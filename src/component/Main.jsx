@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import CardJob from "./CardJob";
-import Pagination from "./Pagination";
+import Pagination from "rc-pagination";
+import "rc-pagination/assets/index.css";
 import { JobsContext } from "../context/JobsContext";
 import { SearchContext } from "../context/SearchContext";
 import axios from "axios";
@@ -11,6 +12,7 @@ const Main = () => {
   const { description, location, fullTime } = useContext(SearchContext);
   const allJobs = useContext(JobsContext);
   const [lengthPages, setLengthPages] = useState(0);
+  const [currentPages, setCurrentPage] = useState(1);
   const [cursor, SetCursor] = useState({ start: 0, end: 5 });
   const [isLoad, setIsLoad] = useState(true);
 
@@ -29,7 +31,7 @@ const Main = () => {
         const length = res.data.length;
 
         if (length > 5) {
-          setLengthPages(Math.ceil(length / 5));
+          setLengthPages(Math.ceil(length));
         } else {
           setLengthPages(0);
         }
@@ -61,106 +63,10 @@ const Main = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [description, location, fullTime]);
 
-  const nextPage = (pages, setPages, setCurrPage) => {
-    const oldPage = document.querySelector(".current-page");
-
+  const onChange = (page, sizePages) => {
+    setCurrentPage(page);
+    SetCursor({ start: (page - 1) * sizePages, end: page * sizePages });
     window.scrollTo(0, document.querySelector(".Main").offsetTop);
-
-    if (parseInt(oldPage.getAttribute("index")) < lengthPages) {
-      SetCursor({
-        start: cursor.start + 5,
-        end: cursor.end + 5,
-      });
-
-      setCurrPage(parseInt(oldPage.getAttribute("index")) + 1);
-
-      if (parseInt(oldPage.textContent) === lengthPages - 3) {
-        const [p1, p2, p3] = pages;
-        setPages([p1 + 1, p2 + 1, p3 + 1, p3 + 2]);
-
-        oldPage.nextElementSibling.setAttribute("index", lengthPages - 1);
-        oldPage.nextElementSibling.textContent = lengthPages - 1;
-        setCurrPage(parseInt(lengthPages - 2));
-      }
-
-      if (oldPage.nextElementSibling.textContent === "...") {
-        const [p1, p2, p3, dot] = pages;
-        setPages([p1 + 1, p2 + 1, p3 + 1, dot]);
-      }
-    }
-  };
-
-  // I make the difference between the cuurent page clicked and the old page
-  const handlePage = (e, pages, setPages, setCurrPage) => {
-    const oldPage = document.querySelector(".current-page"),
-      parent = oldPage.parentNode,
-      currentPage = parseInt(e.target.getAttribute("index"));
-
-    if (!Number.isNaN(currentPage)) {
-      let difference = currentPage - oldPage.getAttribute("index");
-
-      if (parent.childNodes[4]) {
-        if (
-          parseInt(parent.childNodes[1].textContent) >= lengthPages - 4 ||
-          currentPage === lengthPages || currentPage >= lengthPages - 4
-        ) {
-          setPages([lengthPages - 4, lengthPages - 3, lengthPages - 2, lengthPages - 1]);
-          parent.childNodes[4].textContent = lengthPages - 1;
-          parent.childNodes[4].setAttribute("index", lengthPages - 1);
-        } else {
-          parent.childNodes[4].textContent = "...";
-          parent.childNodes[4].setAttribute("index", "...");
-        }
-
-        if (parent.childNodes[4].textContent === "..." && currentPage !== lengthPages) {
-          const [p1, p2, p3, dot] = pages;
-          setPages([p1 + difference, p2 + difference, p3 + difference, dot]);
-        }
-      }
-
-      SetCursor({
-        start: cursor.start + difference * 5,
-        end: cursor.end + difference * 5,
-      });
-
-      setCurrPage(currentPage);
-    }
-  };
-
-  const prevPage = (pages, setPages, setCurrPage) => {
-    const oldPage = document.querySelector(".current-page"),
-      parent = oldPage.parentNode;
-
-    window.scrollTo(0, document.querySelector(".Main").offsetTop);
-
-    if (parseInt(oldPage.textContent) <= lengthPages - 2) {
-      parent.children[4].textContent = "...";
-    }
-
-    if (
-      oldPage.previousElementSibling.classList.contains("prevPage") &&
-      oldPage.textContent !== "1"
-    ) {
-      const [p1, p2, p3, dot] = pages;
-      setPages([p1 - 1, p2 - 1, p3 - 1, dot]);
-
-      setCurrPage(parseInt(oldPage.getAttribute("index")) - 1);
-
-      SetCursor({
-        start: cursor.start - 5,
-        end: cursor.end - 5,
-      });
-    }
-
-    if (oldPage.previousElementSibling.classList.contains("prevPage") === false) {
-      setCurrPage(parseInt(oldPage.getAttribute("index")) - 1);
-      setCurrPage(parseInt(oldPage.getAttribute("index")) - 1);
-
-      SetCursor({
-        start: cursor.start - 5,
-        end: cursor.end - 5,
-      });
-    }
   };
 
   return (
@@ -168,19 +74,15 @@ const Main = () => {
       {isLoad ? (
         <Load />
       ) : (
+        allJobs.jobs.length ?
         allJobs.jobs.slice(cursor.start, cursor.end).map((job, index) => (
           <Link key={job.id} to={`/${job.index}`}>
             <CardJob index={job.index} {...job} />
           </Link>
-        ))
+        )) : <p className="none-job">no job offers here</p>
       )}
       {lengthPages > 0 && (
-        <Pagination
-          length={lengthPages}
-          prevPage={(pages, setPages, setCurrPage) => prevPage(pages, setPages, setCurrPage)}
-          nextPage={(pages, setPages, setCurrPage) => nextPage(pages, setPages, setCurrPage)}
-          click={(e, pages, setPages, setCurrPage) => handlePage(e, pages, setPages, setCurrPage)}
-        />
+        <Pagination showSizeChanger={true} style={{marginTop: "2rem"}} onChange={onChange} pageSize={5} current={currentPages} total={lengthPages} />
       )}
     </main>
   );
