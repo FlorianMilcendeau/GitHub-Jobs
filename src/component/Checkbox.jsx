@@ -1,11 +1,8 @@
 import React from "react";
 import "./Checkbox.css";
 import PropType from "prop-types";
-import { SearchContext } from "../context/SearchContext";
-import { useContext } from "react";
 
 const Checkbox = ({ id, value, setChecked, getBool }) => {
-  const { location, fullTime } = useContext(SearchContext);
 
   const handleCheckbox = (e) => {
     if (e.target.checked) {
@@ -23,7 +20,6 @@ const Checkbox = ({ id, value, setChecked, getBool }) => {
           id={id}
           name={id}
           type="checkbox"
-          checked={location === id || fullTime === getBool ? true : false}
           onChange={(e) => handleCheckbox(e)}
         />
       }
