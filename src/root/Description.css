@@ -2,6 +2,10 @@
   max-width: 90vw;
 }
 
+.Description .sidebar {
+  align-self: flex-start;
+}
+
 .arrow-return {
   transform: rotate(180deg);
 }
@@ -48,7 +52,7 @@
   margin-bottom: 0.5rem;
 }
 
-.Description > .Tag {
+.Description .Tag {
   margin-bottom: 0.5rem;
 }
 
@@ -59,4 +63,25 @@
 
 .detail-job {
   margin-top: 5rem;
+}
+
+@media screen and (min-width: 768px) {
+  .sidebar {
+    align-self: flex-start;
+    margin-right: 1rem;
+  }
+
+  .return-search {
+    width: max-content;
+  }
+
+  .banner-info-job h2 {
+    width: max-content;
+    display: inline-block;
+    margin-right: 1rem;
+  }
+
+  .banner-info-job .Tag {
+    display: inline-block;
+  }
 }
