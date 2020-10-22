@@ -15,33 +15,37 @@ const Description = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <main className="Description">
-      <Link className="return-search" to="/">
-        <img className="arrow-return" src={arrowReturn} alt="arrow return" /> Back to search
-      </Link>
-      <h3 className="title-minor">How to apply</h3>
       {jobs[id] ? (
-        <>
-          <p className="how-apply" dangerouslySetInnerHTML={{ __html: `${jobs[id].apply}` }}></p>
-          <h2>{jobs[id].title}</h2>
-          <Tag value={jobs[id].type} />
-          <InfoPost value={jobs[id].time} icon={timeIcon} />
-          <div className="banner-company">
-            <Picture className="company-logo" src={jobs[id].logo} alt="logo" />
-            <div>
-              <h2>{jobs[id].company}</h2>
-              <InfoPost value={jobs[id].location} icon={earthIcon} />
+        <div className="container-flex">
+          <sidebar className="sidebar">
+            <Link className="return-search" to="/">
+              <img className="arrow-return" src={arrowReturn} alt="arrow return" /> Back to search
+            </Link>
+            <h3 className="title-minor">How to apply</h3>
+            <p className="how-apply" dangerouslySetInnerHTML={{ __html: `${jobs[id].apply}` }}></p>
+          </sidebar>
+          <section className="banner-info-job">
+            <h2>{jobs[id].title}</h2>
+            <Tag value={jobs[id].type} />
+            <InfoPost value={jobs[id].time} icon={timeIcon} />
+            <div className="banner-company">
+              <Picture className="company-logo" src={jobs[id].logo} alt="logo" />
+              <div>
+                <h2>{jobs[id].company}</h2>
+                <InfoPost value={jobs[id].location} icon={earthIcon} />
+              </div>
             </div>
-          </div>
-          <section
-            className="detail-job"
-            dangerouslySetInnerHTML={{ __html: `${jobs[id].description}` }}
-          />
-        </>
+            <section
+              className="detail-job"
+              dangerouslySetInnerHTML={{ __html: `${jobs[id].description}` }}
+            />
+          </section>
+        </div>
       ) : (
         <Redirect to="/" />
       )}
