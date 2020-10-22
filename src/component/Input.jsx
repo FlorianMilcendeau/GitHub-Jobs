@@ -23,7 +23,6 @@ const Input = ({ id, placeHolder, icon, setField, offLive }) => {
       <input
         id={id}
         onChange={(e) => handleInput(e)}
-        value={value}
         placeholder={placeHolder}
         type="search"
         className="Input"
