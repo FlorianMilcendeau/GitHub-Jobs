@@ -90,13 +90,51 @@ const Main = () => {
     }
   };
 
+  // I make the difference between the cuurent page clicked and the old page
+  const handlePage = (e, pages, setPages, setCurrPage) => {
+    const oldPage = document.querySelector(".current-page"),
+      parent = oldPage.parentNode,
+      currentPage = parseInt(e.target.getAttribute("index"));
+
+    if (!Number.isNaN(currentPage)) {
+      let difference = currentPage - oldPage.getAttribute("index");
+
+      if (parent.childNodes[4]) {
+        if (
+          parseInt(parent.childNodes[1].textContent) >= lengthPages - 4 ||
+          currentPage === lengthPages || currentPage >= lengthPages - 4
+        ) {
+          setPages([lengthPages - 4, lengthPages - 3, lengthPages - 2, lengthPages - 1]);
+          parent.childNodes[4].textContent = lengthPages - 1;
+          parent.childNodes[4].setAttribute("index", lengthPages - 1);
+        } else {
+          parent.childNodes[4].textContent = "...";
+          parent.childNodes[4].setAttribute("index", "...");
+        }
+
+        if (parent.childNodes[4].textContent === "..." && currentPage !== lengthPages) {
+          const [p1, p2, p3, dot] = pages;
+          setPages([p1 + difference, p2 + difference, p3 + difference, dot]);
+        }
+      }
+
+      SetCursor({
+        start: cursor.start + difference * 5,
+        end: cursor.end + difference * 5,
+      });
+
+      setCurrPage(currentPage);
+    }
+  };
+
   const prevPage = (pages, setPages, setCurrPage) => {
-    const oldPage = document.querySelector(".current-page");
+    const oldPage = document.querySelector(".current-page"),
+      parent = oldPage.parentNode;
 
     window.scrollTo(0, document.querySelector(".Main").offsetTop);
 
-    if (parseInt(oldPage.textContent) === lengthPages - 2) {
-      oldPage.nextElementSibling.textContent = "...";
+    if (parseInt(oldPage.textContent) <= lengthPages - 2) {
+      parent.children[4].textContent = "...";
     }
 
     if (
@@ -141,6 +179,7 @@ const Main = () => {
           length={lengthPages}
           prevPage={(pages, setPages, setCurrPage) => prevPage(pages, setPages, setCurrPage)}
           nextPage={(pages, setPages, setCurrPage) => nextPage(pages, setPages, setCurrPage)}
+          click={(e, pages, setPages, setCurrPage) => handlePage(e, pages, setPages, setCurrPage)}
         />
       )}
     </main>
