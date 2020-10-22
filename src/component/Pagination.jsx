@@ -4,7 +4,7 @@ import nextArrow from "../assets/icon/nextArrow.svg";
 import "./Pagination.css";
 import PropTypes from "prop-types";
 
-const Pagination = ({ length, nextPage, prevPage }) => {
+const Pagination = ({ length, nextPage, prevPage, click }) => {
   const [totalPages, setTotalPages] = useState([]);
   const [currPage, setCurrPage] = useState(1);
 
@@ -31,12 +31,21 @@ const Pagination = ({ length, nextPage, prevPage }) => {
         <img className="arrow" src={previousArrow} alt="previous arrow icon" />
       </li>
       {totalPages.map((page) => (
-        <li className={`pagination ${page === currPage && "current-page"}`} index={page} key={page}>
+        <li
+          onClick={(e) => click(e, totalPages, setTotalPages, setCurrPage)}
+          className={`pagination ${page === currPage && "current-page"}`}
+          index={page}
+          key={page}
+        >
           {page}
         </li>
       ))}
       {length > 5 && (
-        <li index={length} className={`pagination ${length === currPage && "current-page"}`}>
+        <li
+          index={length}
+          className={`pagination ${length === currPage && "current-page"}`}
+          onClick={(e) => click(e, totalPages, setTotalPages, setCurrPage)}
+        >
           {length}
         </li>
       )}
@@ -53,4 +62,5 @@ Pagination.propTypes = {
   length: PropTypes.number.isRequired,
   nextPage: PropTypes.func.isRequired,
   prevPage: PropTypes.func.isRequired,
+  click: PropTypes.func.isRequired,
 };
