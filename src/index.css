@@ -30,6 +30,7 @@ h1 > span {
 }
 
 footer {
+  margin-top: 1rem;
   font-family: "Montserrat", sans-serif;
   text-align: center;
   font-size: 0.875rem;

@@ -18,9 +18,20 @@
   align-items: center;
 }
 
+.none-job {
+  color: var(--blue-font);
+  font-family: "Poppins", sans-serif;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
 @media screen and (min-width: 768px) {
   .container-flex {
     flex-direction: row;
     justify-content: space-around;
+  }
+
+  .rc-pagination {
+    align-self: flex-end;
   }
 }
