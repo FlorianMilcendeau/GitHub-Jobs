@@ -3,10 +3,11 @@
   flex-direction: column;
   justify-content: space-evenly;
   height: 15rem;
+  margin-top: 1rem;
 }
 
 .title-minor {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   color: var(--ligth-font);
   text-transform: uppercase;
   margin-bottom: 0;
@@ -14,7 +15,7 @@
 }
 
 .SideBar .wrapper-checkbox:nth-of-type(1) {
-  margin-top: 1rem;
+  margin-top: 2rem;
 }
 
 .SideBar .Input {
@@ -24,6 +25,10 @@
 
 .SideBar .wrapper-input {
   margin-bottom: 1rem;
+}
+
+.wrapper-checkbox {
+  margin-bottom: 0.5rem;
 }
 
 @media screen and (min-width: 768px) {
@@ -36,5 +41,13 @@
 
   .SideBar .Input {
     width: 20vw;
+  }
+
+  .wrapper-checkbox {
+    margin-bottom: 0.5rem;
+  }
+
+  .SideBar .wrapper-checkbox:nth-of-type(1) {
+    margin-top: 4rem;
   }
 }

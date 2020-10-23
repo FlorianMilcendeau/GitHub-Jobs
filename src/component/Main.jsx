@@ -82,7 +82,7 @@ const Main = () => {
         )) : <p className="none-job">no job offers here</p>
       )}
       {lengthPages > 0 && (
-        <Pagination showSizeChanger={true} style={{marginTop: "2rem"}} onChange={onChange} pageSize={5} current={currentPages} total={lengthPages} />
+        <Pagination style={{marginTop: "2rem"}} onChange={onChange} pageSize={5} current={currentPages} total={lengthPages} />
       )}
     </main>
   );
