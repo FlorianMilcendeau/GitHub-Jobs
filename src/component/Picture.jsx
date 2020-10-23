@@ -3,7 +3,7 @@ import "./Picture.css"
 import PropTypes from "prop-types";
 
 const Picture = ({ className, src, alt }) => {
-  const [isComplete, setComplete] = useState(true);
+  const [isComplete, setComplete] = useState(false);
 
   const progressLoad = (e) => {
     const img = e.target;
@@ -12,7 +12,6 @@ const Picture = ({ className, src, alt }) => {
 
   return (
     <div className="wrapper-picture">
-      {isComplete && (
         <img
           lazy="true"
           onLoad={(e) => progressLoad(e)}
@@ -24,7 +23,6 @@ const Picture = ({ className, src, alt }) => {
           }
           alt={alt}
         />
-      )}
       {isComplete === false && <div className="placeholder"></div>}
     </div>
   );
