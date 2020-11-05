@@ -25,6 +25,6 @@
 @media screen and (min-width: 1750px) {
   .Button {
     left: 50%;
-    transform: translateX(17rem);
+    transform: translateX(20.2rem);
   }
 }
