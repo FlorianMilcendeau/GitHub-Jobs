@@ -1,15 +1,15 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState } from 'react';
 
 export const SearchContext = createContext({
-  description: "",
-  location: "",
+  description: '',
+  location: '',
   fullTime: false,
   setDescription: () => {},
   setLocation: () => {},
   setFullTime: () => {},
 });
 
-SearchContext.displayName = "SearchContext";
+SearchContext.displayName = 'SearchContext';
 
 export const SearchContextProvider = ({ children }) => {
   const setLocation = (location) => {
@@ -25,8 +25,8 @@ export const SearchContextProvider = ({ children }) => {
   };
 
   const initSearched = {
-    description: "",
-    location: "",
+    description: '',
+    location: '',
     fullTime: false,
     setDescription: setDescription,
     setLocation: setLocation,
@@ -35,5 +35,7 @@ export const SearchContextProvider = ({ children }) => {
 
   const [searched, setSearched] = useState(initSearched);
 
-  return <SearchContext.Provider value={searched}>{children}</SearchContext.Provider>;
+  return (
+    <SearchContext.Provider value={searched}>{children}</SearchContext.Provider>
+  );
 };
