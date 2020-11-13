@@ -1,10 +1,12 @@
 import React from 'react';
-import './Checkbox.css';
 import PropType from 'prop-types';
 
-const Checkbox = ({ id, value, setChecked, getBool }) => {
+import './Checkbox.css';
+
+const Checkbox = ({ id, value, setChecked, getBool, isChecked }) => {
   const handleCheckbox = (e) => {
-    if (e.target.checked) {
+    const { checked } = e.target;
+    if (checked) {
       setChecked(getBool ? true : id);
     } else {
       setChecked(getBool ? false : '');
@@ -19,6 +21,7 @@ const Checkbox = ({ id, value, setChecked, getBool }) => {
           id={id}
           name={id}
           type='checkbox'
+          checked={isChecked === id || isChecked === getBool ? true : false}
           onChange={(e) => handleCheckbox(e)}
         />
       }
@@ -34,5 +37,6 @@ export default Checkbox;
 Checkbox.propType = {
   id: PropType.string.isRequired,
   value: PropType.string.isRequired,
-  setChecked: PropType.func,
+  setChecked: PropType.func.isRequired,
+  isChecked: PropType.bool.isRequired,
 };
