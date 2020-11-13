@@ -1,16 +1,22 @@
 import React, { useEffect, useState, useContext } from 'react';
-import CardJob from './CardJob';
-import Pagination from 'rc-pagination';
-import 'rc-pagination/assets/index.css';
-import { JobsContext } from '../context/JobsContext';
-import { SearchContext } from '../context/SearchContext';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import Pagination from 'rc-pagination';
+import 'rc-pagination/assets/index.css';
+
+import CardJob from './CardJob';
 import Load from './Load';
 
+import { JobsContext } from '../context/JobsContext';
+import { SearchContext } from '../context/SearchContext';
+import { FullTimeContext } from '../context/FullTimeContext';
+import { LocationContext } from '../context/LocationContext';
+
 const Main = () => {
-  const { description, location, fullTime } = useContext(SearchContext);
-  const allJobs = useContext(JobsContext);
+  const { description } = useContext(SearchContext);
+  const { location } = useContext(LocationContext);
+  const { fullTime } = useContext(FullTimeContext);
+  const { jobs, setJobs } = useContext(JobsContext);
   const [lengthPages, setLengthPages] = useState(0);
   const [currentPages, setCurrentPage] = useState(1);
   const [cursor, SetCursor] = useState({ start: 0, end: 5 });
@@ -51,7 +57,7 @@ const Main = () => {
           };
         });
 
-        allJobs.setJobs(result);
+        setJobs(result);
         SetCursor({ start: 0, end: length > 5 ? 5 : length });
         setIsLoad(false);
       })
@@ -69,8 +75,8 @@ const Main = () => {
     <main className='Main'>
       {isLoad ? (
         <Load />
-      ) : allJobs.jobs.length ? (
-        allJobs.jobs
+      ) : jobs.length ? (
+        jobs
           .filter((job) => {
             if (fullTime) {
               return 'Full Time' === job.type;
@@ -78,7 +84,7 @@ const Main = () => {
             return job;
           })
           .slice(cursor.start, cursor.end)
-          .map((job, index) => (
+          .map((job) => (
             <Link key={job.id} to={`/${job.index}`}>
               <CardJob index={job.index} {...job} />
             </Link>
