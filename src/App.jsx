@@ -10,8 +10,8 @@ import { LocationContextProvider } from './context/LocationContext';
 
 import './App.css';
 
-const Description = lazy(() => import('./root/Description'));
-const SearchJobs = lazy(() => import('./root/SearchJobs'));
+const Description = lazy(() => import('./views/Description'));
+const SearchJobs = lazy(() => import('./views/SearchJobs'));
 
 function App() {
   return (
